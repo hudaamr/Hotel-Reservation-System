@@ -1,53 +1,63 @@
 package Models;
 
-public class Guest {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Guest extends Person {
     private String guestID;
-    private String name;
-    private String contactInfo;
-    private List<Booking> bookings;
+    private String paymentInfo;
+    private List<Booking> reservationHistory;
 
     // Constructor
-    public Guest(String guestID, String name, String contactInfo) {
+    public Guest(String name, String contactInfo, String guestID) {
+        super(name, contactInfo);
         this.guestID = guestID;
-        this.name = name;
-        this.contactInfo = contactInfo;
-        this.bookings = new ArrayList<>();
+        this.paymentInfo = ""; // default payment info (can be set later)
+        this.reservationHistory = new ArrayList<>();
     }
 
-    // Getters and setters
+    // Getters
     public String getGuestID() {
         return guestID;
     }
 
-    public void setGuestID(String guestID) {
-        this.guestID = guestID;
+    public String getPaymentInfo() {
+        return paymentInfo;
     }
 
-    public String getName() {
-        return name;
+    public List<Booking> getReservationHistory() {
+        return reservationHistory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    // Setters
+    public void setPaymentInfo(String paymentInfo) {
+        this.paymentInfo = paymentInfo;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    // Functions for Guest Class
+
+    // 1. Update contact information
+    public void updateContactInfo(String newContactInfo) {
+        this.contactInfo = newContactInfo;
+        System.out.println("Contact information updated.");
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    // 2. Add booking to reservation history
+    public void addBookingToHistory(Booking booking) {
+        this.reservationHistory.add(booking);
+        System.out.println("Booking added to guest's reservation history.");
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
+    // 3. Make a reservation (using the ReservationManager)
+    public void makeReservation(ReservationManager reservationManager, Room room, Date startDate, Date endDate) {
+        reservationManager.createBooking(this, room, startDate, endDate);
     }
 
-    // Add a booking
-    public void addBooking(Booking booking) {
-        bookings.add(booking);
+    // 4. View reservation history
+    public void viewReservationHistory() {
+        System.out.println("Reservation History for Guest: " + this.name);
+        for (Booking booking : reservationHistory) {
+            System.out.println(booking.getBookingDetails());
+        }
     }
-
-    // Other guest-related methods (e.g., cancel booking, view booking history)
 }
-
