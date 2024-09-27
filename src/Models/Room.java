@@ -6,9 +6,9 @@ public abstract class Room {
     int roomNumber;
     double pricePerNight;
     boolean isAvailable;
-    List<String> amenities;
+    boolean amenities;
 
-    Room(int roomNumber, double pricePerNight, List<String> amenities) {
+    Room(int roomNumber, double pricePerNight, boolean amenities) {
         this.roomNumber = roomNumber;
         this.pricePerNight = pricePerNight;
         this.amenities = amenities;
@@ -39,11 +39,11 @@ public abstract class Room {
         isAvailable = available;
     }
 
-    public List<String> getAmenities() {
+    public boolean getAmenities() {
         return amenities;
     }
 
-    public void setAmenities(List<String> amenities) {
+    public void setAmenities(boolean amenities) {
         this.amenities = amenities;
     }
 

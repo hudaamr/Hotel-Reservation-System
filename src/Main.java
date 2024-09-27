@@ -26,9 +26,31 @@ public class Main {
 
         System.out.println("Welcome to the Hotel Reservation System!");
 
+        // Create guest
+        System.out.print("Enter guest name: ");
+        String guestName = scanner.nextLine();
+        System.out.print("Enter guest ID: ");
+        String guestID = scanner.nextLine();
+        Guest guest = new Guest(guestName, "Not provided", guestID);
 
+        //  Display available rooms and allow room selection
+        System.out.println("\nAvailable rooms:");
+        for (Room room : roomRepository.getAllRooms()) {
+            System.out.println(room.toString());
+        }
 
-        // Step 6: Get booking dates from user
+        System.out.print("\nEnter room number to select: ");
+        int selectedRoomNumber = scanner.nextInt();
+        scanner.nextLine();
+
+        Room selectedRoom = roomRepository.getRoom(selectedRoomNumber);
+
+        if (selectedRoom == null || !selectedRoom.isAvailable()) {
+            System.out.println("Room not available or invalid selection. Exiting.");
+            return;
+        }
+
+        // Get booking dates from user
         System.out.print("Enter start date (yyyy-MM-dd): ");
         String startDateInput = scanner.nextLine();
         Date startDate = dateFormat.parse(startDateInput);
@@ -37,11 +59,11 @@ public class Main {
         String endDateInput = scanner.nextLine();
         Date endDate = dateFormat.parse(endDateInput);
 
-        // Step 7: Create a booking
+        // Create a booking
         System.out.println("\nCreating your booking...");
         reservationManager.createBooking(guest, selectedRoom, startDate, endDate);
 
-        // Step 8: Ask if user wants to cancel the booking
+        // Ask if user wants to cancel the booking
         System.out.print("\nWould you like to cancel your booking? (yes/no): ");
         String cancelInput = scanner.nextLine();
 
@@ -51,13 +73,12 @@ public class Main {
             reservationManager.cancelBooking(bookingID);
         }
 
-        // Step 9: Display all bookings
+        // Display all bookings
         System.out.println("\nCurrent bookings: ");
         for (Booking booking : reservationManager.getAllBookings()) {
             System.out.println(booking.getBookingDetails());
         }
 
-        // Step 10: Close the scanner
         scanner.close();
     }
 }

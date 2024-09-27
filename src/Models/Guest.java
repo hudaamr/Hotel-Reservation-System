@@ -1,6 +1,9 @@
 package Models;
 
+import Services.ReservationManager;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Guest extends Person {
