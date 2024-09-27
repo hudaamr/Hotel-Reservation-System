@@ -63,6 +63,13 @@ public class Main {
         System.out.println("\nCreating your booking...");
         reservationManager.createBooking(guest, selectedRoom, startDate, endDate);
 
+        // Offer additional services
+        System.out.println("\nDo you want to add any additional services? (room service/spa/laundry) Type 'none' to skip.");
+        String serviceInput = scanner.nextLine();
+        if (!serviceInput.equalsIgnoreCase("none")) {
+            reservationManager.applyAdditionalService(guest, serviceInput);
+        }
+
         // Ask if user wants to cancel the booking
         System.out.print("\nWould you like to cancel your booking? (yes/no): ");
         String cancelInput = scanner.nextLine();
@@ -73,11 +80,17 @@ public class Main {
             reservationManager.cancelBooking(bookingID);
         }
 
+
         // Display all bookings
         System.out.println("\nCurrent bookings: ");
         for (Booking booking : reservationManager.getAllBookings()) {
             System.out.println(booking.getBookingDetails());
         }
+
+        // Generate and display revenue report
+        System.out.println("\nGenerating revenue report...");
+        reservationManager.generateRevenueReport();
+
 
         scanner.close();
     }
