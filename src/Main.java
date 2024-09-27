@@ -12,13 +12,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        // Step 1: Create the RoomRepository
-        RoomRepository roomRepository = new RoomRepository();
+        RoomRepository roomRepository = RoomRepository.getInstance();
 
-        // Step 2: Initialize the ReservationManager with the RoomRepository
         ReservationManager reservationManager = new ReservationManager(roomRepository);
 
-        // Step 3: Create Rooms and add them to the RoomRepository
         Room singleRoom = new SingleRoom(101, 100.0, true); // Single Room
         Room doubleRoom = new DoubleRoom(102, 150.0, true); // Double Room
         Room suiteRoom = new SuiteRoom(103, 250.0, true);   // Suite Room
@@ -27,45 +24,9 @@ public class Main {
         roomRepository.addRoom(doubleRoom);
         roomRepository.addRoom(suiteRoom);
 
-        // User Interaction Begins
         System.out.println("Welcome to the Hotel Reservation System!");
 
-        // Step 4: Get user details for creating a guest
-        System.out.print("Enter your name: ");
-        String guestName = scanner.nextLine();
 
-        System.out.print("Enter your email: ");
-        String guestEmail = scanner.nextLine();
-
-        System.out.print("Enter your contact number: ");
-        String guestContact = scanner.nextLine();
-
-        Guest guest = new Guest(guestName, guestEmail, guestContact);
-
-        // Step 5: Select room type
-        System.out.println("Select Room Type: ");
-        System.out.println("1. Single Room");
-        System.out.println("2. Double Room");
-        System.out.println("3. Suite Room");
-
-        int roomChoice = scanner.nextInt();
-        scanner.nextLine(); // consume newline character
-
-        Room selectedRoom;
-        switch (roomChoice) {
-            case 1:
-                selectedRoom = singleRoom;
-                break;
-            case 2:
-                selectedRoom = doubleRoom;
-                break;
-            case 3:
-                selectedRoom = suiteRoom;
-                break;
-            default:
-                System.out.println("Invalid selection. Defaulting to Single Room.");
-                selectedRoom = singleRoom;
-        }
 
         // Step 6: Get booking dates from user
         System.out.print("Enter start date (yyyy-MM-dd): ");

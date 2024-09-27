@@ -8,6 +8,13 @@ public abstract class Room {
     boolean isAvailable;
     List<String> amenities;
 
+    Room(int roomNumber, double pricePerNight, List<String> amenities) {
+        this.roomNumber = roomNumber;
+        this.pricePerNight = pricePerNight;
+        this.amenities = amenities;
+        isAvailable = true;
+    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
@@ -40,17 +47,9 @@ public abstract class Room {
         this.amenities = amenities;
     }
 
-
-
-    Room(int roomNumber, double pricePerNight, List<String> amenities) {
-        this.roomNumber = roomNumber;
-        this.pricePerNight = pricePerNight;
-        this.amenities = amenities;
-        isAvailable = true;
+    @Override
+    public String toString() {
+       return "The room number is " + roomNumber + " and the price per night is " + pricePerNight +
+               ". The amenities are " + amenities + ". The room is " + (isAvailable ? "available" : "not available");
     }
-
-
-
-
-
 }

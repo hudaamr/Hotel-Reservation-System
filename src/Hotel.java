@@ -8,7 +8,6 @@ public class Hotel {
     public Hotel() {
         roomRepository = RoomRepository.getInstance();
     }
-    //TODO: this method can take the guest id to reserve the room for a specific guest
 
     private boolean manageRoomAvailability(int roomNumber) {
         return roomRepository.getRoom(roomNumber).isAvailable();
