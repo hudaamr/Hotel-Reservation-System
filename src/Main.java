@@ -16,9 +16,9 @@ public class Main {
 
         ReservationManager reservationManager = new ReservationManager(roomRepository);
 
-        Room singleRoom = new SingleRoom(101, 100.0, true); // Single Room
-        Room doubleRoom = new DoubleRoom(102, 150.0, true); // Double Room
-        Room suiteRoom = new SuiteRoom(103, 250.0, true);   // Suite Room
+        Room singleRoom = new SingleRoom(101, 100.0, true);
+        Room doubleRoom = new DoubleRoom(102, 150.0, true);
+        Room suiteRoom = new SuiteRoom(103, 250.0, true);
 
         roomRepository.addRoom(singleRoom);
         roomRepository.addRoom(doubleRoom);

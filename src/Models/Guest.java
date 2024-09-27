@@ -15,11 +15,10 @@ public class Guest extends Person {
     public Guest(String name, String contactInfo, String guestID) {
         super(name, contactInfo);
         this.guestID = guestID;
-        this.paymentInfo = ""; // default payment info (can be set later)
+        this.paymentInfo = "";
         this.reservationHistory = new ArrayList<>();
     }
 
-    // Getters
     public String getGuestID() {
         return guestID;
     }
@@ -32,12 +31,9 @@ public class Guest extends Person {
         return reservationHistory;
     }
 
-    // Setters
     public void setPaymentInfo(String paymentInfo) {
         this.paymentInfo = paymentInfo;
     }
-
-    // Functions for Guest Class
 
     // 1. Update contact information
     public void updateContactInfo(String newContactInfo) {

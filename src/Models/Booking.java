@@ -10,7 +10,6 @@ public class Booking {
     private Room room;
     private String status;
 
-    // Constructor
     public Booking(String bookingID, Guest guest, Room room, Date startDate, Date endDate) {
         this.bookingID = bookingID;
         this.guest = guest;
@@ -20,7 +19,6 @@ public class Booking {
         this.status = "Confirmed";  // Default status for new bookings
     }
 
-    // Getters
     public String getBookingID() {
         return bookingID;
     }
@@ -58,14 +56,12 @@ public class Booking {
         this.status = status;
     }
 
-    // Functions for Booking Class
-
-    // 1. Create a new booking
+    // Create a new booking
     public static Booking createBooking(String bookingID, Guest guest, Room room, Date startDate, Date endDate) {
         return new Booking(bookingID, guest, room, startDate, endDate);
     }
 
-    // 2. Modify an existing booking (dates and room)
+    //Modify an existing booking (dates and room)
     public void modifyBooking(Date newStartDate, Date newEndDate, Room newRoom) {
         if (newRoom.isAvailable()) {
             this.startDate = newStartDate;
@@ -77,17 +73,16 @@ public class Booking {
         }
     }
 
-    // 3. Cancel a booking
+    //Cancel a booking
     public void cancelBooking() {
         this.status = "Cancelled";
         System.out.println("Booking cancelled successfully.");
     }
 
-    // 4. Get details of a booking
+    // Get details of a booking
     public String getBookingDetails() {
         return "Booking ID: " + bookingID + ", Guest: " + guest.getName() + 
                ", Room: " + room.getRoomNumber() + ", Status: " + status;
     }
 
-    // Additional utility methods can be added as needed
 }
